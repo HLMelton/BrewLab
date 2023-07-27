@@ -10,7 +10,7 @@
 
         <ion-tab-button tab="Export" href="/tabs/Export">
           <ion-icon aria-hidden="true" :icon="beakerOutline" />
-          <ion-label>Lab Grown Racism</ion-label>
+          <ion-label>Export Brew</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="Profile" href="/tabs/Profile">
