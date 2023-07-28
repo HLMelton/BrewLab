@@ -3,7 +3,7 @@
 
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{userdata.name}}</ion-title>
+        <ion-title>Your Profile</ion-title>
       </ion-toolbar>
     </ion-header>
 
