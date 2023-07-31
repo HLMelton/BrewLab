@@ -10,7 +10,7 @@
       <ion-list>
         <ion-item
           v-for="brew in brews"
-          router-link="`brews/${brew.id}`"
+          @click=""
           :key="brew.id"
           >
           <ion-thumbnail slot="start">
