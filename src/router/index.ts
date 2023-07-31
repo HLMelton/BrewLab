@@ -6,36 +6,31 @@ import TabsPage from '../views/TabsPage.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/brews'
+    redirect: '/Brews'
   },
   {
-    path: '/tabs/',
+    path:'/Home',
     component: TabsPage,
-    children: [
+    children:[
       {
-        path: '',
-        redirect: '/tabs/brews'
-      },
-      {
-        path: '/brews',
+        path: '/Brews',
         component: () => import('@/views/Brews.vue'),
-        children: [
-          {
-            path:'/brews/:id',
-            component: () => import('../views/BrewRecipe.vue')
-          }
-        ],
       },
       {
-        path: 'Export',
+        path: '/brews:id',
+        component: () => import('@/components/BrewView.vue')
+      },
+      {
+        path: '/Export',
         component: () => import('@/views/Export.vue')
       },
       {
-        path: 'tab3',
+        path: '/Profile',
         component: () => import('@/views/Profile.vue')
       }
     ]
   }
+
 ]
 
 const router = createRouter({
