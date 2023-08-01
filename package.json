@@ -20,9 +20,11 @@
     "@capacitor/ios": "5.2.2",
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/status-bar": "5.0.6",
+    "@ionic/storage": "^4.0.0",
     "@ionic/vue": "^7.0.0",
     "@ionic/vue-router": "^7.0.0",
     "ionicons": "^7.0.0",
+    "pinia": "^2.1.6",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
