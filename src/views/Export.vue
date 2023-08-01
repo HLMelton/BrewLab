@@ -3,64 +3,46 @@
 
     <ion-header>
       <ion-toolbar>
-        <ion-title>Export Brew</ion-title>
+        <ion-title slot="start">Brew Share</ion-title>
+        <ion-segment value="default" >
+        <ion-segment-button value="default">
+          <ion-label>Export</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="segment">
+          <ion-label>Import</ion-label>
+        </ion-segment-button>
+      </ion-segment>
       </ion-toolbar>
+
     </ion-header>
     <ion-ion-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col>1</ion-col>
-          <ion-col>2</ion-col>
-          <ion-col>3</ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col>1</ion-col>
-          <ion-col>2</ion-col>
-          <ion-col>3</ion-col>
-          <ion-col>4</ion-col>
-          <ion-col>5</ion-col>
-          <ion-col>6</ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col>1</ion-col>
-          <ion-col>2</ion-col>
-          <ion-col>3</ion-col>
-          <ion-col>4</ion-col>
-          <ion-col>5</ion-col>
-          <ion-col>6</ion-col>
-          <ion-col>7</ion-col>
-          <ion-col>8</ion-col>
-          <ion-col>9</ion-col>
-          <ion-col>10</ion-col>
-          <ion-col>11</ion-col>
-          <ion-col>12</ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-list>
+        <ion-item>
+          <ion-label>Pokémon Yellow</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Mega Man X</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>The Legend of Zelda</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Pac-Man</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Super Mario World</ion-label>
+        </ion-item>
+      </ion-list>
     </ion-ion-content>
 
   </ion-page>
 </template>
 
 <script lang="ts">
-  import { IonPage, IonCol, IonGrid, IonRow, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
+  import { IonPage, IonHeader, IonToolbar, IonTitle, IonLabel, IonSegment, IonSegmentButton, IonList, IonItem} from '@ionic/vue';
   import { defineComponent } from 'vue';
 
   export default defineComponent({
-    components: { IonCol, IonGrid, IonRow, IonPage},
+    components: {IonPage, IonLabel, IonSegment, IonSegmentButton, IonList, IonItem},
   });
 </script>
-
-<style scoped>
-  ion-col {
-    background-color: #135d54;
-    border: solid 1px #fff;
-    color: #fff;
-    text-align: center;
-  }
-</style>
