@@ -2,24 +2,21 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Brew Guides</ion-title>
+        <ion-title slot="start">Brew Guides</ion-title>
+        <ion-button slot="end" @click="">
+          <ion-title >Create </ion-title>
+        </ion-button>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <ion-list>
-        <ion-item
-          v-for="brew in brews"
-          @click=""
-          :key="brew.id"
-          >
-          <ion-thumbnail slot="start">
-            <ion-img :src="brew.img" />
-          </ion-thumbnail>
-          <ion-label>{{brew.title}}</ion-label>
 
-        </ion-item>
-      </ion-list>
+        <ion-card v-for="brew in brews">
+          <ion-button id="brewModalToggle" >
+            <ion-card-title>{{ brew.title }}</ion-card-title>
+            <ion-card-content> {{ brew.details }}</ion-card-content>
+          </ion-button>
+        </ion-card>
     </ion-content>
 
   </ion-page>
@@ -32,11 +29,12 @@ import {
   IonToolbar, 
   IonTitle, 
   IonContent, 
-  IonItem, 
-  IonLabel, 
-  IonList, 
-  IonThumbnail 
+  IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
+  IonButton,
+  IonIcon
 } from '@ionic/vue';
+import { addOutline} from 'ionicons/icons';
+
 import { defineComponent } from 'vue';
 
 
@@ -47,13 +45,15 @@ export default defineComponent({
     IonToolbar,
     IonTitle,
     IonContent,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonThumbnail
+    IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
+    IonButton,
+    IonIcon,
 },
   // I'll have to wrap this into the onBeforeMounted() so that it can load them before loading the brews onto the page.
   props:{
+  },
+  methods:{
+    
   },
   setup(props) {
     return{
