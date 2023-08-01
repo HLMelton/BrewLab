@@ -1,11 +1,5 @@
-import {createStore} from 'vuex'
+import { defineStore } from "pinia";
 
-const store = createStore({
-    state() {
-        return{
-            
-        };
-    }
+export const usePiniaStore = defineStore({
+
 });
-
-export default store;
