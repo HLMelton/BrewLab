@@ -3,18 +3,19 @@
     <ion-header>
       <ion-toolbar>
         <ion-title slot="start">Brew Guides</ion-title>
-        <ion-button slot="end" @click="">Create</ion-button>
+        <ion-button slot="end" @click="">New</ion-button>
       </ion-toolbar>
     </ion-header>
 
-    <ion-content :fullscreen="true">
-
-        <ion-card v-for="brew in brews">
+    <ion-content :fullscreen="true" class="ion-padding">
+        <!-- <ion-card v-for="brew in brews">
           <ion-button id="brewModalToggle" >
             <ion-card-title>{{ brew.title }}</ion-card-title>
             <ion-card-content> {{ brew.details }}</ion-card-content>
           </ion-button>
-        </ion-card>
+        </ion-card> -->
+        <!-- Might want to change this to a clickable list here.  -->
+        <ion-button v-for="brew in brews">{{ brew.title }}</ion-button>
     </ion-content>
 
   </ion-page>
