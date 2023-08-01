@@ -3,9 +3,7 @@
     <ion-header>
       <ion-toolbar>
         <ion-title slot="start">Brew Guides</ion-title>
-        <ion-button slot="end" @click="">
-          <ion-title >Create </ion-title>
-        </ion-button>
+        <ion-button slot="end" @click="">Create</ion-button>
       </ion-toolbar>
     </ion-header>
 
