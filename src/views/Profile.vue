@@ -13,6 +13,16 @@
           <ion-title size="large">Tab 3</ion-title>
         </ion-toolbar>
       </ion-header>
+
+      <ion-segment value="default" >
+          <ion-segment-button value="default">
+            <ion-label>Export</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="segment">
+            <ion-label>Import</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
     </ion-content>
 
     
@@ -27,7 +37,6 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   components: { IonPage, IonHeader, IonToolbar, IonTitle, IonContent},
   props: {
-    userdata: {type: Object, required: true},
   },
 });
 
