@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: '/Export',
-        component: () => import('@/views/Export.vue')
+        component: () => import('@/views/Brewshare/Export.vue')
       },
       {
         path: '/Profile',
