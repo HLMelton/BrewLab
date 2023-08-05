@@ -5,13 +5,13 @@
       <ion-toolbar>
         <ion-title slot="start">Brew Share</ion-title>
         <ion-segment value="default" >
-        <ion-segment-button value="default">
-          <ion-label>Export</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="segment">
-          <ion-label>Import</ion-label>
-        </ion-segment-button>
-      </ion-segment>
+          <ion-segment-button value="default">
+            <ion-label>Export</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="segment">
+            <ion-label>Import</ion-label>
+          </ion-segment-button>
+        </ion-segment>
       </ion-toolbar>
 
     </ion-header>
