@@ -32,7 +32,6 @@ import {
   IonButton,
   IonIcon
 } from '@ionic/vue';
-import { addOutline} from 'ionicons/icons';
 
 import { defineComponent } from 'vue';
 
