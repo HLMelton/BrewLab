@@ -15,6 +15,7 @@
     "@capacitor-community/barcode-scanner": "^4.0.1",
     "@capacitor/android": "5.2.2",
     "@capacitor/app": "5.0.6",
+    "@capacitor/camera": "^5.0.7",
     "@capacitor/core": "5.2.2",
     "@capacitor/haptics": "5.0.6",
     "@capacitor/ios": "5.2.2",
@@ -23,8 +24,9 @@
     "@ionic/storage": "^4.0.0",
     "@ionic/vue": "^7.0.0",
     "@ionic/vue-router": "^7.0.0",
-    "@vercel/analytics": "^1.0.1",
+    "@supabase/supabase-js": "^2.39.1",
     "ionicons": "^7.0.0",
+    "native-run": "^2.0.0",
     "pinia": "^2.1.6",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"

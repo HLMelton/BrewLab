@@ -17,14 +17,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/Brews.vue'),
       },
       {
-        path: '/brews:id',
-        component: () => import('@/components/BrewView.vue')
-      },
-      // {
-      //   path: '/Export',
-      //   component: () => import('@/views/Brewshare.vue')
-      // },
-      {
         path: '/Profile',
         component: () => import('@/views/Profile.vue')
       }

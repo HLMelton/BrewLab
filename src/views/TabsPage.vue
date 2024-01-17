@@ -7,12 +7,6 @@
           <ion-icon aria-hidden="true" :icon="cafeOutline" />
           <ion-label>Brew Guides</ion-label>
         </ion-tab-button>
-
-        <ion-tab-button tab="Export" href="/Export">
-          <ion-icon aria-hidden="true" :icon="beakerOutline" />
-          <ion-label>Export Brew</ion-label>
-        </ion-tab-button>
-
         <ion-tab-button tab="Profile" href="/Profile">
           <ion-icon aria-hidden="true" :icon="personOutline" />
           <ion-label>Profile</ion-label>
