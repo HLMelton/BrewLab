@@ -3,8 +3,31 @@ import App from './App.vue'
 import router from './router';
 import { createPinia } from 'pinia'; 
 
+// Components
+import { 
+  IonicVue,
 
-import { IonicVue } from '@ionic/vue';
+  IonPage, 
+  IonTitle, 
+  IonCardTitle, 
+  IonBackButton, 
+  IonContent, 
+  
+  IonGrid, 
+  IonRow, 
+  IonCol, 
+  IonIcon, 
+  IonButtons, 
+  IonButton, 
+  IonCard, 
+  IonCardContent, 
+  
+  IonToolbar, 
+  IonHeader, 
+  IonCardSubtitle, 
+  IonCardHeader, 
+  IonImg, 
+  IonAvatar  } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -32,6 +55,26 @@ app.use(IonicVue);
 app.use(router);
 app.use(pinia);
   
+app.component('ion-page', IonPage)
+app.component('ion-content', IonContent)
+app.component('ion-grid', IonGrid)
+app.component('ion-row', IonRow)
+app.component('ion-col', IonCol)
+app.component('ion-icon', IonIcon)
+app.component('ion-buttons', IonButtons)
+app.component('ion-button', IonButton)
+app.component('ion-card', IonCard)
+app.component('ion-card-content', IonCardContent)
+app.component('ion-back-button', IonBackButton)
+app.component('ion-title', IonTitle)
+app.component('ion-card-title', IonCardTitle)
+app.component('ion-toolbar', IonToolbar)
+app.component('ion-header', IonHeader)
+app.component('ion-card-subtitle', IonCardSubtitle)
+app.component('ion-card-header', IonCardHeader)
+app.component('ion-img', IonImg)
+app.component('ion-avatar', IonAvatar)
+app.component('ion-header', IonHeader)
 
 
 // Previously we would mount the app in here
