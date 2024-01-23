@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../views/TabsPage.vue';
 import BrewList from '../views/BrewList.vue';
-import BrewView from '../views/BrewList.vue';
-import NewBrew from '../views/BrewList.vue';
-import Profile from '';
+import BrewView from '../views/BrewView.vue';
+import NewBrew from '../views/NewBrew.vue';
+import Profile from '../views/Profile.vue';
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     children:[
       {
         path: '/tabs/brews',
-        component: () => import('@/views/BrewList.vue'),
+        component: BrewList,
       },
       {
         path:'/tabs/brews/:buid',
