@@ -1,13 +1,13 @@
 <template>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button @click="router.push('/tabs/brews/new')">
+    <ion-fab-button>
       <ion-icon :icon="addOutline"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
       <ion-fab-button >
         <ion-icon :icon="enterOutline"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button>
+      <ion-fab-button @click="router.push('/tabs/brews/new')">
         <ion-icon :icon="addOutline"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
