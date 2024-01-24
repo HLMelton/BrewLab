@@ -18,19 +18,23 @@ const routes: Array<RouteRecordRaw> = [
     children:[
       {
         path: '/tabs/brews',
+        name: 'BrewList',
         component: BrewList,
       },
       {
         path:'/tabs/brews/:buid',
-        component: () => import('@/views/BrewView.vue'),
+        name: 'BrewView',
+        component: BrewView,
       },
       {
         path:'/tabs/brews/new',
-        component: () => import('@/views/NewBrew')
+        name:'NewBrew',
+        component: NewBrew
       },
       {
         path: '/tabs/profile',
-        component: () => import('@/views/Profile.vue'),
+        name:'Profile',
+        component: Profile,
       },
 
     ]

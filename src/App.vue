@@ -20,11 +20,12 @@
 <script setup lang="ts">
 import {IonApp, IonHeader, IonRouterOutlet, IonButton, IonToolbar, useIonRouter, IonContent} from '@ionic/vue';
 import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
-const route = useIonRouter();
+const route = useRoute();
 
 const routsToShowBack = computed(() => {
-  return !route.canGoBack;
+  return route.name !== 'BrewList' 
 })
 
 </script>

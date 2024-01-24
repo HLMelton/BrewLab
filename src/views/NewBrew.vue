@@ -10,11 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { 
-  IonRouterOutlet,
-  useIonRouter,
-} from '@ionic/vue';
 
-const router = useIonRouter();
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 </script>
