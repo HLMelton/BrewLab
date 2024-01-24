@@ -12,7 +12,7 @@ import {
   IonCardTitle, 
   IonBackButton, 
   IonContent, 
-  
+
   IonGrid, 
   IonRow, 
   IonCol, 
