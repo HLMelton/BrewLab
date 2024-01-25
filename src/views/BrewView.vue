@@ -3,7 +3,7 @@
     <ion-content class="ion-padding">
         <ion-row>
           <ion-icon></ion-icon>
-          <ion-header>Brew Details</ion-header>
+          <ion-header>{{ store.brewEntity.brews[0].title }}</ion-header>
         </ion-row>
     </ion-content>
   </ion-page>
@@ -16,5 +16,8 @@ import { brewStore } from '@/store/store.js';
 const router = useRouter();
 const store = brewStore();
 
+const props = defineProps({
+  
+})
 
 </script>

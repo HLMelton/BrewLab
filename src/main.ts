@@ -74,12 +74,5 @@ app.component('ion-card-subtitle', IonCardSubtitle)
 app.component('ion-card-header', IonCardHeader)
 app.component('ion-img', IonImg)
 app.component('ion-avatar', IonAvatar)
-app.component('ion-header', IonHeader)
-
-
-// Previously we would mount the app in here
-// router.isReady().then(() => {
-  
-// });
 
 app.mount('#app');

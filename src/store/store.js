@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-// import { supabase } from '@supabase/supabase-js';
+import { supabase } from '../supabase'
+import.meta.env;
 
 export const brewStore = defineStore('brews',{
   state: () => ({
@@ -43,7 +44,10 @@ export const brewStore = defineStore('brews',{
       }
 
       this.brewEntity = mockUser;
+    },
+    fetchBrewsFromSupabase(){
+      
+      this.brewEntity = {};
     }
-
   }
 });

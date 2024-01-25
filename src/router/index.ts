@@ -1,11 +1,11 @@
+//@ts-ignore
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../views/TabsPage.vue';
-import BrewList from '../views/BrewList.vue';
-import BrewView from '../views/BrewView.vue';
-import NewBrew from '../views/NewBrew.vue';
-import Profile from '../views/Profile.vue';
-
+import TabsPage from '@/views/TabsPage.vue';
+import BrewList from '@/views/BrewList.vue';
+import BrewView from '@/views/BrewView.vue';
+import NewBrew from '@/views/NewBrew.vue';
+import Profile from '@/views/Profile.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {

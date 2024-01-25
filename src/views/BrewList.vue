@@ -24,7 +24,7 @@ const store = brewStore();
 const router = useRouter();
 
 onMounted(async() => {
-  await store.fetchBrewsFromDB();
+  await store.fetchBrewsFromSupabase();
 })
 
 </script>
