@@ -6,11 +6,16 @@ import BrewList from '@/views/BrewList.vue';
 import BrewView from '@/views/BrewView.vue';
 import NewBrew from '@/views/NewBrew.vue';
 import Profile from '@/views/Profile.vue';
+import Authentication from '@/views/Authentication.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/brews'
+    redirect: '/authentication'
+  },
+  {
+    path:'/Authentication',
+    component: Authentication,
   },
   {
     path:'/tabs',

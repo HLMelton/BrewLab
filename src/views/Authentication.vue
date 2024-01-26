@@ -1,36 +1,21 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Login</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
     <ion-content>
-      <div class="ion-padding">
-        <h1>BrewLab</h1>
-        <p>Sign in using Discord below</p>
-      </div>
-      <ion-list inset="true">
-        <form @submit.prevent="handleOAuthLogin">
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input v-model="email" name="email" autocomplete type="email"></ion-input>
-          </ion-item>
-          <div class="ion-text-center">
-            <ion-button type="submit" fill="clear">Login</ion-button>
-          </div>
-        </form>
-      </ion-list>
-      <p>{{email}}</p>
+      <ion-button>
+        <ion-icon :icon="logoDiscord" @click="handleOAuthLogin()"></ion-icon>
+      </ion-button>
+      <ion-button> 
+        <ion-icon :icon="logoGoogle" @click="handleOAuthLogin()"></ion-icon>
+      </ion-button>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import { loadingController, toastController } from '@ionic/vue';
-// import { supabaseClient } from '../supabase';
+import { supabase } from '../supabase';
 import { ref } from 'vue';
+import { logoDiscord, logoGoogle } from 'ionicons/icons';
 
 const email = ref('')
 
@@ -40,7 +25,7 @@ const handleOAuthLogin = async() => {
 
   try {
     await loader.present()
-    const { error } = await supabaseClient.auth.signInWithOAuth({provider: 'discord'})
+    const { error } = await supabase.auth.signInWithOAuth({provider: 'discord'})
 
     if (error) throw error
 
@@ -55,5 +40,7 @@ const handleOAuthLogin = async() => {
     await loader.dismiss()
   }
 }
+
+
 
 </script>
