@@ -1,14 +1,8 @@
 import { defineStore } from "pinia";
-import { supabase } from '../supabase'
+import { supabase } from '../supabase';
 import.meta.env;
 
-export const userStore = defineStore('user',{
-  state: () => ({
-    userSession: ''
-  }), 
-})
-
-export const brewStore = defineStore('brews',{
+export const useBrewStore = defineStore('brews',{
   state: () => ({
     brewEntity: {}
   }),
