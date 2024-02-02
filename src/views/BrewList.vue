@@ -13,18 +13,28 @@
 
 <script setup lang="ts">
 
-import { brewStore } from "@/store/store.js";
+import { useBrewStore } from "../store/brewStore";
 import { useRouter } from 'vue-router';
 
 
 import CreationTool from '../components/CreationTool.vue';
 import { onMounted } from "vue";
+import { supabase } from "../supabase";
 
-const store = brewStore();
+const store = useBrewStore();
 const router = useRouter();
 
 onMounted(async() => {
-  await store.fetchBrewsFromSupabase();
+  console.log('Mounted')
+  if (supabase.auth.getSession() !== null){
+    console.log('fetching brews')
+    await store.fetchBrewsFromDB();
+  } else {
+    console.log('Rerouting due to auth')
+    router.push('/authentication')
+  }
+
 })
 
 </script>
+../store/store

@@ -1,22 +1,23 @@
 <template>
   <ion-page>
     <ion-content>
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Profile</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      
+      <ion-title size="large" class="ion-padding">{{ userStore.userName }}</ion-title>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import { supabase } from '../supabase';
+import { useUserStore } from '../store/userStore';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const userStore = useUserStore();
 
 const handleLogOut = async() => {
   const { error } = await supabase.auth.signOut()
+  console.log('Signed out')
+  router.push('/authentication')
 }
 
 </script>
