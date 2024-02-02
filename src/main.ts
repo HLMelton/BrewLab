@@ -27,7 +27,14 @@ import {
   IonCardSubtitle, 
   IonCardHeader, 
   IonImg, 
-  IonAvatar  } from '@ionic/vue';
+  IonAvatar,
+  IonList,
+  IonItem,
+  IonInput,
+  IonLabel,
+  IonSegment,
+  IonSegmentButton
+  } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -74,5 +81,11 @@ app.component('ion-card-subtitle', IonCardSubtitle)
 app.component('ion-card-header', IonCardHeader)
 app.component('ion-img', IonImg)
 app.component('ion-avatar', IonAvatar)
+app.component('ion-list',IonList)
+app.component('ion-item',IonItem)
+app.component('ion-label',IonLabel)
+app.component('ion-input',IonInput)
+app.component('ion-segment',IonSegment)
+app.component('ion-segment-button',IonSegmentButton)
 
 app.mount('#app');
