@@ -6,9 +6,8 @@
         <ion-buttons slot="start" class="ion-float-left">
           <ion-back-button defaultHref="/tabs" v-if="routsToShowBack"> Back </ion-back-button>
         </ion-buttons>
-        <ion-button slot="end" v-if="route.name === 'Brew List'" @click="console.log(supabase.auth.getUser())" class="ion-padding-end"> Ping </ion-button>
+        <ion-button slot="end" v-if="route.name === 'Brew List'" @click="console.log(userStore)" class="ion-padding-end"> Ping </ion-button>
         <ion-button slot="end" v-if="route.name === 'Profile'" @click="handleSignOut" class="ion-padding-end"> Sign Out </ion-button>
-        <ion-button slot="end" v-if="route.name === 'Create Brew'" class="ion-padding-end"> Save </ion-button>
       </ion-toolbar>
       
     </ion-header>
@@ -24,6 +23,7 @@ import { supabase } from './supabase';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from './store/userStore';
+import NewBrew from './views/NewBrew.vue';
 
 const route = useRoute();
 const router = useRouter();
