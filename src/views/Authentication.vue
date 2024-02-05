@@ -30,7 +30,7 @@
 
         </form>
 
-        <ion-button shape="round" class="ion-padding " @click="handleEmailAuthentication(creds.email, creds.password)">Login</ion-button>
+        <ion-button shape="round" class="ion-padding " @click="handleEmailLogin(creds)">Login</ion-button>
 
       
         <!-- <ion-row class="ion-justify-content-center">
@@ -71,9 +71,8 @@
           </ion-item>
         </form>
 
-        <ion-button shape="round" class="ion-padding" @click="registerNewUser()">Register</ion-button>
-
-      
+        <ion-button shape="round" class="ion-padding" :disabled="true" @click="registerNewUser(creds)">Register</ion-button>
+  
         <!-- <ion-row class="ion-justify-content-center">
           <ion-button shape="round">
             <ion-icon :icon="logoDiscord" @click="handleDiscordLogin()"></ion-icon>
@@ -82,7 +81,6 @@
             <ion-icon :icon="logoGoogle" @click="handleGoogleLogin()"></ion-icon>
           </ion-button>
         </ion-row> -->
-
       </ion-list>
     </ion-content>
   </ion-page>
@@ -91,14 +89,13 @@
 <script setup lang="ts">
 import { loadingController, toastController } from '@ionic/vue';
 import { supabase } from '../supabase';
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { logoDiscord, logoGoogle } from 'ionicons/icons';
 import router from '../router';
 import { useBrewStore } from '../store/brewStore';
 import { useUserStore } from '../store/userStore';
 
 const creds = ref({
-  username: "",
   email: "",
   password: "",
 })
@@ -108,26 +105,14 @@ const registerVisible = ref(false)
 const brewStore = useBrewStore()
 const userStore = useUserStore()
 
-const registerNewUser = async() => {
+const registerNewUser = async(creds: {email: string, password: string}) => {
   const { data, error } = await supabase.auth.signUp({
-    email: 'example@email.com',
-    password: 'example-password',
+    email: creds.email,
+    password: creds.password,
     options: {
-      emailRedirectTo: 'https://example.com/welcome'
+      emailRedirectTo: 'http://brewlab.app'
     }
   })
-}
-
-const handleEmailAuthentication = async(email: string, password: string) => {
-  try {
-    userStore.authenticate(email, password)
-  } catch (error: any){
-    console.log(error)
-  } finally {
-    if(userStore.user !== null){
-      router.push('/tabs')
-    }
-  }
 }
 
 const handleEmailLogin = async(creds: {email: string, password: string}) => {
@@ -136,24 +121,29 @@ const handleEmailLogin = async(creds: {email: string, password: string}) => {
 
   try {
     await loader.present()
-    userStore.authenticate(creds.email,creds.password)
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: creds.email,
-      password: creds.password,
+      password: creds.password
     })
   }
   catch (error: any) {
     toast.message = error.error_description || error.message
     await toast.present()
   } finally {
-    if(userStore.user !== null ){
+    const sessionData = await supabase.auth.getSession()
+    await loader.dismiss()
+    userStore.getUserSession()
+    if(userStore.user !== null){
       router.push('/tabs')
-      await loader.dismiss()
-    }else{
-      console.log('Incorrect login')
     }
   }
-
 }
+
+// onBeforeMount(() => {
+//   const returning = userStore.getUserSession()
+//   if(userStore.user !== null){
+//     router.push('/tabs')
+//   }
+// })
 
 </script>

@@ -25,15 +25,7 @@ const userStore = useUserStore();
 const router = useRouter();
 
 onMounted(()=> {
-  if(userStore.user === null){
-    console.log('userStore is Empty, rerouting')
-    router.push('/authentication')
-  }
-
-  console.log("Current user session")
-  console.log(userStore.user)
-
-
+  brewStore.fetchBrewsFromDB()
 })
 
 </script>

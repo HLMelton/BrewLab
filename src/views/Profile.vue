@@ -16,6 +16,7 @@ const userStore = useUserStore();
 
 const handleLogOut = async() => {
   const { error } = await supabase.auth.signOut()
+  userStore.wipeUserStore()
   console.log('Signed out')
   router.push('/authentication')
 }
