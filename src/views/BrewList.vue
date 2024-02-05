@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content class="ion-padding">
-      <ion-card v-for="brew in store.brewEntity.brews">
+      <ion-card v-for="brew in brewStore.brews">
       <ion-button expand="block" @click="router.push({ name: 'BrewView', params: {buid: brew.buid} })">
         <ion-title>{{ brew.title }}</ion-title>
       </ion-button>
@@ -14,27 +14,26 @@
 <script setup lang="ts">
 
 import { useBrewStore } from "../store/brewStore";
+import { useUserStore } from "../store/userStore";
 import { useRouter } from 'vue-router';
-
 
 import CreationTool from '../components/CreationTool.vue';
 import { onMounted } from "vue";
-import { supabase } from "../supabase";
 
-const store = useBrewStore();
+const brewStore = useBrewStore();
+const userStore = useUserStore();
 const router = useRouter();
 
-onMounted(async() => {
-  console.log('Mounted')
-  if (supabase.auth.getSession() !== null){
-    console.log('fetching brews')
-    await store.fetchBrewsFromDB();
-  } else {
-    console.log('Rerouting due to auth')
+onMounted(()=> {
+  if(userStore.user === null){
+    console.log('userStore is Empty, rerouting')
     router.push('/authentication')
   }
+
+  console.log("Current user session")
+  console.log(userStore.user)
+
 
 })
 
 </script>
-../store/store

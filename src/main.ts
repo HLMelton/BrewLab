@@ -33,7 +33,8 @@ import {
   IonInput,
   IonLabel,
   IonSegment,
-  IonSegmentButton
+  IonSegmentButton,
+  IonRange
   } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
@@ -59,8 +60,9 @@ const app = createApp(App);
 const pinia = createPinia();
 
 app.use(IonicVue);
-app.use(router);
 app.use(pinia);
+app.use(router);
+
   
 app.component('ion-page', IonPage)
 app.component('ion-content', IonContent)
@@ -87,5 +89,6 @@ app.component('ion-label',IonLabel)
 app.component('ion-input',IonInput)
 app.component('ion-segment',IonSegment)
 app.component('ion-segment-button',IonSegmentButton)
+app.component('ion-range',IonRange)
 
 app.mount('#app');

@@ -30,7 +30,7 @@
 
         </form>
 
-        <ion-button shape="round" class="ion-padding " @click="handleEmailLogin(creds)">Login</ion-button>
+        <ion-button shape="round" class="ion-padding " @click="handleEmailAuthentication(creds.email, creds.password)">Login</ion-button>
 
       
         <!-- <ion-row class="ion-justify-content-center">
@@ -94,7 +94,8 @@ import { supabase } from '../supabase';
 import { ref } from 'vue';
 import { logoDiscord, logoGoogle } from 'ionicons/icons';
 import router from '../router';
-
+import { useBrewStore } from '../store/brewStore';
+import { useUserStore } from '../store/userStore';
 
 const creds = ref({
   username: "",
@@ -103,6 +104,9 @@ const creds = ref({
 })
 
 const registerVisible = ref(false)
+
+const brewStore = useBrewStore()
+const userStore = useUserStore()
 
 const registerNewUser = async() => {
   const { data, error } = await supabase.auth.signUp({
@@ -114,12 +118,25 @@ const registerNewUser = async() => {
   })
 }
 
+const handleEmailAuthentication = async(email: string, password: string) => {
+  try {
+    userStore.authenticate(email, password)
+  } catch (error: any){
+    console.log(error)
+  } finally {
+    if(userStore.user !== null){
+      router.push('/tabs')
+    }
+  }
+}
 
 const handleEmailLogin = async(creds: {email: string, password: string}) => {
   const loader = await loadingController.create({})
   const toast = await toastController.create({})
+
   try {
     await loader.present()
+    userStore.authenticate(creds.email,creds.password)
     const { error } = await supabase.auth.signInWithPassword({
       email: creds.email,
       password: creds.password,
@@ -129,10 +146,9 @@ const handleEmailLogin = async(creds: {email: string, password: string}) => {
     toast.message = error.error_description || error.message
     await toast.present()
   } finally {
-    await loader.dismiss()
-    if((await supabase.auth.getSession()).data.session !== null){
-      console.log(supabase.auth.getSession())
+    if(userStore.user !== null ){
       router.push('/tabs')
+      await loader.dismiss()
     }else{
       console.log('Incorrect login')
     }

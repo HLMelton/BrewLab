@@ -19,5 +19,23 @@
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import {cafeOutline, personOutline } from 'ionicons/icons';
+import { onMounted } from 'vue';
+import { supabase } from '../supabase';
+import { useUserStore } from '../store/userStore';
+import { useBrewStore } from '../store/brewStore';
+import { useRouter, useRoute } from 'vue-router';
+
+const router = useRouter();
+
+const userStore = useUserStore();
+const brewStore = useBrewStore();
+
+// onMounted(async() => {
+//   console.log('Tabs mounted, User Session:')
+//   console.log(userStore.user)
+//   if (userStore.user === null){
+//     router.push('/authentication')
+//   } 
+// })
 
 </script>

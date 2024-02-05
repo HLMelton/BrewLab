@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content>
-      <ion-title size="large" class="ion-padding">{{ userStore.userName }}</ion-title>
+      <ion-title size="large" class="ion-padding">{{  }}</ion-title>
     </ion-content>
   </ion-page>
 </template>

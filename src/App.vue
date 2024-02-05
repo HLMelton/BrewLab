@@ -2,10 +2,13 @@
   <ion-app>
     <ion-header>
       <ion-toolbar v-if="route.name !== 'Authentication'">
-        <ion-buttons slot="start">
-          <ion-back-button defaultHref="/" v-if="routsToShowBack"> Back </ion-back-button>
+        <h1 class="ion-text-center"> {{ route.name }} </h1>
+        <ion-buttons slot="start" class="ion-float-left">
+          <ion-back-button defaultHref="/tabs" v-if="routsToShowBack"> Back </ion-back-button>
         </ion-buttons>
+        <ion-button slot="end" v-if="route.name === 'Brew List'" @click="console.log(supabase.auth.getUser())" class="ion-padding-end"> Ping </ion-button>
         <ion-button slot="end" v-if="route.name === 'Profile'" @click="handleSignOut" class="ion-padding-end"> Sign Out </ion-button>
+        <ion-button slot="end" v-if="route.name === 'Create Brew'" class="ion-padding-end"> Save </ion-button>
       </ion-toolbar>
       
     </ion-header>
@@ -20,9 +23,11 @@ import {IonApp, IonHeader, IonRouterOutlet, IonButton, IonToolbar, useIonRouter,
 import { supabase } from './supabase';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useUserStore } from './store/userStore';
 
 const route = useRoute();
 const router = useRouter();
+const userStore = useUserStore();
 
 const handleSignOut = async() => {
   const { error } = await supabase.auth.signOut()
@@ -31,7 +36,7 @@ const handleSignOut = async() => {
 }
 
 const routsToShowBack = computed(() => {
-  return route.name !== 'BrewList' 
+  return route.name !== 'Brew List' 
 })
 
 </script>
