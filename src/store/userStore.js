@@ -3,7 +3,6 @@
 import { defineStore } from "pinia";
 import { supabase } from '../supabase';
 import { useBrewStore } from "./brewStore";
-import.meta.env;
 
 export const useUserStore = defineStore('user', {
   state: () => ({
