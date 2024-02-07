@@ -14,18 +14,14 @@
 <script setup lang="ts">
 
 import { useBrewStore } from "../store/brewStore";
-import { useUserStore } from "../store/userStore";
 import { useRouter } from 'vue-router';
 
 import CreationTool from '../components/CreationTool.vue';
 import { onMounted } from "vue";
 
 const brewStore = useBrewStore();
-const userStore = useUserStore();
 const router = useRouter();
 
-onMounted(()=> {
-  brewStore.fetchBrewsFromDB()
-})
+
 
 </script>

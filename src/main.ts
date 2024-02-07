@@ -63,7 +63,6 @@ app.use(IonicVue);
 app.use(pinia);
 app.use(router);
 
-  
 app.component('ion-page', IonPage)
 app.component('ion-content', IonContent)
 app.component('ion-grid', IonGrid)

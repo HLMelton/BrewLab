@@ -45,7 +45,6 @@
 
 import { useRouter } from 'vue-router';
 import { supabase } from '../supabase';
-import { useUserStore } from '../store/userStore';
 import { ref } from 'vue';
 
 const router = useRouter();

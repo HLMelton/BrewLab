@@ -89,11 +89,10 @@
 <script setup lang="ts">
 import { loadingController, toastController } from '@ionic/vue';
 import { supabase } from '../supabase';
-import { onBeforeMount, ref } from 'vue';
-import { logoDiscord, logoGoogle } from 'ionicons/icons';
+import { onBeforeMount, onMounted, ref } from 'vue';
+import { colorWandOutline, logoDiscord, logoGoogle } from 'ionicons/icons';
 import router from '../router';
 import { useBrewStore } from '../store/brewStore';
-import { useUserStore } from '../store/userStore';
 
 const creds = ref({
   email: "",
@@ -101,9 +100,6 @@ const creds = ref({
 })
 
 const registerVisible = ref(false)
-
-const brewStore = useBrewStore()
-const userStore = useUserStore()
 
 const registerNewUser = async(creds: {email: string, password: string}) => {
   const { data, error } = await supabase.auth.signUp({
@@ -115,35 +111,36 @@ const registerNewUser = async(creds: {email: string, password: string}) => {
   })
 }
 
-const handleEmailLogin = async(creds: {email: string, password: string}) => {
+async function handleEmailLogin(creds: {email:string, password: string}) {
   const loader = await loadingController.create({})
   const toast = await toastController.create({})
 
-  try {
+  try{
     await loader.present()
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const {data, error} = await supabase.auth.signInWithPassword({
       email: creds.email,
       password: creds.password
     })
   }
-  catch (error: any) {
+  catch (error: any){
     toast.message = error.error_description || error.message
     await toast.present()
-  } finally {
-    const sessionData = await supabase.auth.getSession()
+  }finally{
     await loader.dismiss()
-    userStore.getUserSession()
-    if(userStore.user !== null){
-      router.push('/tabs')
-    }
+    router.push('/tabs')
   }
 }
 
-// onBeforeMount(() => {
-//   const returning = userStore.getUserSession()
-//   if(userStore.user !== null){
-//     router.push('/tabs')
-//   }
-// })
+async function getUserSession(){
+  const userSession = await supabase.auth.getSession()
+  return userSession.data.session
+}
+
+onBeforeMount(async() => {
+  const returning = await getUserSession()
+  if(returning !== null){
+    router.push('/tabs')
+  }
+})
 
 </script>

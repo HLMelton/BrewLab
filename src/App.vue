@@ -6,7 +6,6 @@
         <ion-buttons slot="start" class="ion-float-left">
           <ion-back-button defaultHref="/tabs" v-if="routsToShowBack"> Back </ion-back-button>
         </ion-buttons>
-        <ion-button slot="end" v-if="route.name === 'Brew List'" @click="console.log(userStore)" class="ion-padding-end"> Ping </ion-button>
         <ion-button slot="end" v-if="route.name === 'Profile'" @click="handleSignOut" class="ion-padding-end"> Sign Out </ion-button>
       </ion-toolbar>
       
@@ -17,17 +16,15 @@
   </ion-app>
 </template>
 
-<script setup lang="ts">
+<script setup >
 import {IonApp, IonHeader, IonRouterOutlet, IonButton, IonToolbar, useIonRouter, IonContent} from '@ionic/vue';
 import { supabase } from './supabase';
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useUserStore } from './store/userStore';
 import NewBrew from './views/NewBrew.vue';
 
 const route = useRoute();
 const router = useRouter();
-const userStore = useUserStore();
 
 const handleSignOut = async() => {
   const { error } = await supabase.auth.signOut()

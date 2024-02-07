@@ -7,7 +7,6 @@ import BrewView from '../views/BrewView.vue';
 import NewBrew from '../views/NewBrew.vue';
 import Profile from '../views/Profile.vue';
 import Authentication from '../views/Authentication.vue';
-import { useUserStore } from '../store/userStore';
 import { supabase } from '../supabase';
 
 const routes: Array<RouteRecordRaw> = [
@@ -41,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path:'/tabs/brews/new',
         name:'Create Brew',
-        component: NewBrew
+        component: NewBrew,
       },
       {
         path: '/tabs/profile',
@@ -58,13 +57,23 @@ const router = createRouter({
   routes
 })
 
-// router.beforeEach(async (to)=> {
-//   const userStore = useUserStore()
-//   if(to.meta.requiresAuth == true && userStore.user === null){
-//     return '/authentication';
-//   }
+async function getUser(next: any){
+  const currentUser = await supabase.auth.getSession()
+  if(currentUser.data.session == null){
+    next("/authentication")
+  }else{
+    next();
+  }
+}
 
-// })
+router.beforeEach((to, from, next)=> {
+  if(to.meta.requiresAuth){
+    getUser(next);
+  }else{
+    next();
+  }
+
+})
 
 export default router
 
