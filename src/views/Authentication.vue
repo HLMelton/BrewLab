@@ -47,41 +47,50 @@
     </ion-content>
 
     <ion-content v-if="registerVisible === true">
-      <ion-list class="ion-justify-content-center">
-        <form>
 
-          <ion-item>
-            <ion-label position="stacked">Username</ion-label>
-            <ion-input name="userName" aria-label="userName"></ion-input>
-          </ion-item>
+      <ion-row class="ion-justify-content-center">
+        <div>
 
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input v-model="creds.email" name="email" autocomplete type="email" aria-label="email"></ion-input>
-          </ion-item>
+        </div>
+        <ion-list class="ion-justify-content-center ion-padding" id="signupContainer">
+          <h1>Create your account</h1>
+          <p>to continue to BrewLab</p>
 
-          <ion-item>
-            <ion-label position="stacked">Password</ion-label>
-            <ion-input v-model="creds.password" name="password" autocomplete type="password" aria-label="password"></ion-input>
-          </ion-item>
+              <ion-button class="ion-margin">
+                <ion-icon :icon="logoDiscord"></ion-icon>
+                Continue with Discord
+              </ion-button>
+              <ion-button class="ion-margin"> 
+                <ion-icon :icon="logoGoogle"></ion-icon> 
+                Continue with Google
+              </ion-button>
 
-          <ion-item>
-            <ion-label position="stacked">Confirm Password</ion-label>
-            <ion-input autocomplete type="password" aria-label="password"></ion-input>
-          </ion-item>
-        </form>
+          <form>
+            <h3 class="text-center">or</h3>
 
-        <ion-button shape="round" class="ion-padding" :disabled="true" @click="registerNewUser(creds)">Register</ion-button>
-  
-        <!-- <ion-row class="ion-justify-content-center">
-          <ion-button shape="round">
-            <ion-icon :icon="logoDiscord" @click="handleDiscordLogin()"></ion-icon>
-          </ion-button>
-          <ion-button shape="round"> 
-            <ion-icon :icon="logoGoogle" @click="handleGoogleLogin()"></ion-icon>
-          </ion-button>
-        </ion-row> -->
-      </ion-list>
+            <ion-item>
+              <ion-label position="stacked">Display Name</ion-label>
+              <ion-input name="userName" aria-label="userName"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Email</ion-label>
+              <ion-input v-model="creds.email" name="email" autocomplete type="email" aria-label="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Password</ion-label>
+              <ion-input v-model="creds.password" name="password" autocomplete type="password" aria-label="password"></ion-input>
+            </ion-item>
+
+          </form>
+          
+          <ion-button shape="round" class="ion-padding ion-justify" :disabled="true" @click="registerNewUser(creds)">Register</ion-button>
+    
+
+        </ion-list>
+      </ion-row>
+
     </ion-content>
   </ion-page>
 </template>
@@ -144,3 +153,23 @@ onBeforeMount(async() => {
 })
 
 </script>
+
+<style scoped>
+h1{
+  margin-bottom:0;
+}
+
+h3{
+  text-align: center;
+}
+
+p{
+  margin-top: 0
+}
+
+#signupContainer{
+  border-radius: 1rem;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+</style>
