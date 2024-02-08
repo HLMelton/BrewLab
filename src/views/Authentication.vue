@@ -13,13 +13,23 @@
     <div class="ion-padding ion-text-center">
       <h1>BrewLab</h1>
     </div>
-    <ion-content class="ion-padding" v-if="registerVisible === false">
-
-      <ion-list>
+    <ion-content v-if="registerVisible === false">
+      <ion-row class="ion-justify-content-center">
+      <ion-list class="ion-justify-content-center ion-padding"  id="signupContainer">
         <form>
+          <h1>Sign in</h1>
+          <p>to continue to BrewLab</p>
 
+              <ion-button class="ion-margin">
+                <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
+                Sign in with Discord
+              </ion-button>
+              <ion-button class="ion-margin"> 
+                <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
+                Sign in with Google
+              </ion-button>
           <ion-item>
-            <ion-label position="stacked">Email</ion-label>
+            <ion-label position="stacked">Email></ion-label>
             <ion-input v-model="creds.email" name="email" autocomplete type="email" aria-label="email"></ion-input>
           </ion-item>
 
@@ -29,29 +39,17 @@
           </ion-item>
 
         </form>
-
-        <ion-button shape="round" class="ion-padding " @click="handleEmailLogin(creds)">Login</ion-button>
-
-      
-        <!-- <ion-row class="ion-justify-content-center">
-          <ion-button shape="round">
-            <ion-icon :icon="logoDiscord" @click="handleDiscordLogin()"></ion-icon>
-          </ion-button>
-          <ion-button shape="round"> 
-            <ion-icon :icon="logoGoogle" @click="handleGoogleLogin()"></ion-icon>
-          </ion-button>
-        </ion-row> -->
+        <div id="submissionContainer">
+          <ion-button shape="round" class="ion-padding " @click="handleEmailLogin(creds)">Login</ion-button>
+        </div>
 
       </ion-list>
-
+    </ion-row>
     </ion-content>
 
     <ion-content v-if="registerVisible === true">
 
       <ion-row class="ion-justify-content-center">
-        <div>
-
-        </div>
         <ion-list class="ion-justify-content-center ion-padding" id="signupContainer">
           <h1>Create your account</h1>
           <p>to continue to BrewLab</p>
@@ -172,4 +170,15 @@ p{
   margin-left: 5%;
   margin-right: 5%;
 }
+
+#submissionContainer{
+  justify-content: center;
+  align-content: center;
+}
+
+.OAuthButton{
+  padding-left: 1rem;
+  align-items: center;
+}
+
 </style>
