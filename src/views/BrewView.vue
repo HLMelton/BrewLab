@@ -3,7 +3,7 @@
     <ion-content class="ion-padding">
         <ion-row>
           <ion-icon></ion-icon>
-          <ion-header>{{ focusBrew.title }}</ion-header>
+          <ion-header>{{  }}</ion-header>
         </ion-row>
     </ion-content>
   </ion-page>
