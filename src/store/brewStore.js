@@ -8,7 +8,12 @@ import.meta.env;
 
 export const useBrewStore = defineStore('brews',{
   state: () => ({
-    brews: []
+    brews: [
+      {
+        title: String,
+        buid: Number,
+      }
+    ]
   }),
 
   actions: {
