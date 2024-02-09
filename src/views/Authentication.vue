@@ -21,11 +21,11 @@
           <p>to continue to BrewLab</p>
 
           <div>
-            <ion-button :disabled="true" class="ion-margin">
+            <ion-button :disabled="true" class="ion-margin" expand="block">
               <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
               Sign in with Discord
             </ion-button>
-            <ion-button :disabled="true" class="ion-margin"> 
+            <ion-button :disabled="true" class="ion-margin" expand="block"> 
               <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
               Sign in with Google
             </ion-button>
@@ -58,11 +58,11 @@
           <h1>Create your account</h1>
           <p>to continue to BrewLab</p>
 
-              <ion-button :disabled="true" class="ion-margin">
+              <ion-button :disabled="true" class="ion-margin" expand="block">
                 <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
                 Sign up with Discord
               </ion-button>
-              <ion-button :disabled="true" class="ion-margin"> 
+              <ion-button :disabled="true" class="ion-margin" expand="block"> 
                 <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
                 Sign up with Google
               </ion-button>
@@ -160,6 +160,7 @@ onBeforeMount(async() => {
 
 #heroText{
   font-family:'Gerhaus';
+  margin:0
 }
 
 h1{

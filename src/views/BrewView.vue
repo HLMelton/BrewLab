@@ -3,13 +3,14 @@
     <ion-content class="ion-padding">
         <ion-row>
           <ion-icon></ion-icon>
-          <ion-header>{{ store.brews[0].title }}</ion-header>
+          <ion-header>{{ focusBrew.title }}</ion-header>
         </ion-row>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useBrewStore } from '../store/brewStore';
 
@@ -20,4 +21,5 @@ const props = defineProps({
   focusBrew: {}
 })
 
+const focusBrew = ref(props.focusBrew)
 </script>

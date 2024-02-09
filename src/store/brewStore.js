@@ -10,8 +10,8 @@ export const useBrewStore = defineStore('brews',{
   state: () => ({
     brews: [
       {
-        title: String,
-        buid: Number,
+        title: '',
+        buid: '0',
       }
     ]
   }),

@@ -105,9 +105,6 @@ const brewTemplate = ref({
 
 const inputSequence = ref([{}])
 
-const timingSequence = ref([])
-const detailSequence = ref([])
-
 function calculateTarget(input: number, ratio: number){
   const target = input * ratio
   return target
