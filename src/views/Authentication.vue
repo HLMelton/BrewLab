@@ -16,29 +16,33 @@
     <ion-content v-if="registerVisible === false">
       <ion-row class="ion-justify-content-center">
       <ion-list class="ion-justify-content-center ion-padding"  id="signupContainer">
-        <form>
+
           <h1>Sign in</h1>
           <p>to continue to BrewLab</p>
 
-              <ion-button class="ion-margin">
-                <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
-                Sign in with Discord
-              </ion-button>
-              <ion-button class="ion-margin"> 
-                <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
-                Sign in with Google
-              </ion-button>
-          <ion-item>
-            <ion-label position="stacked">Email></ion-label>
-            <ion-input v-model="creds.email" name="email" autocomplete type="email" aria-label="email"></ion-input>
-          </ion-item>
+          <div>
+            <ion-button :disabled="true" class="ion-margin">
+              <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
+              Sign in with Discord
+            </ion-button>
+            <ion-button :disabled="true" class="ion-margin"> 
+              <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
+              Sign in with Google
+            </ion-button>
+          </div>
+          <form>
+            <h3 class="text-center">or</h3>
+            <ion-item>
+              <ion-label position="stacked">Email</ion-label>
+              <ion-input v-model="creds.email" name="email" autocomplete type="email" aria-label="email"></ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Password</ion-label>
-            <ion-input v-model="creds.password" name="password" autocomplete type="password" aria-label="password"></ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Password</ion-label>
+              <ion-input v-model="creds.password" name="password" autocomplete type="password" aria-label="password"></ion-input>
+            </ion-item>
 
-        </form>
+          </form>
         <div id="submissionContainer">
           <ion-button shape="round" class="ion-padding " @click="handleEmailLogin(creds)">Login</ion-button>
         </div>
@@ -54,11 +58,11 @@
           <h1>Create your account</h1>
           <p>to continue to BrewLab</p>
 
-              <ion-button class="ion-margin">
+              <ion-button :disabled="true" class="ion-margin">
                 <ion-icon :icon="logoDiscord"></ion-icon>
                 Continue with Discord
               </ion-button>
-              <ion-button class="ion-margin"> 
+              <ion-button :disabled="true" class="ion-margin"> 
                 <ion-icon :icon="logoGoogle"></ion-icon> 
                 Continue with Google
               </ion-button>

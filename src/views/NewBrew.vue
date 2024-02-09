@@ -7,20 +7,42 @@
         </ion-item>
 
         <ion-item>
-          <ion-range label-placement="start" label="Ratio" v-model="brewTemplate.ratio"></ion-range>
+          <ion-range :ticks="true" :snaps="true" :min="1" :max="22" :pin="true" label-placement="start" label="Ratio" v-model="brewTemplate.ratio" :pin-formatter="(value: number)=>`1/${value}`"></ion-range>
         </ion-item>
 
         <ion-item>
-          <ion-input label="Device" v-model="brewTemplate.device"> </ion-input>
-          <ion-input label="Method" v-model="brewTemplate.method"> </ion-input>
+          <ion-select label="Method">
+            <ion-select-option value="Immersion">Immersion</ion-select-option>
+            <ion-select-option value="Percolation">Percolation</ion-select-option>
+            <ion-select-option value="Hybrid">Hybrid</ion-select-option>
+          </ion-select>
+          
+          <ion-select label="Device" v-model="brewTemplate.device" class="ion-margin-start">
+            <ion-select-option value="V60">V60</ion-select-option>
+            <ion-select-option value="Flat Bottom">Flat Bottom</ion-select-option>
+            <ion-select-option value="Aeropress">Aeropress</ion-select-option>
+            <ion-select-option value="Espresso">Espresso</ion-select-option>
+            <ion-select-option value="Cold Brew">Cold Brew</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item v-if="brewTemplate.bloom === true">
+          <ion-input label="Bloom" v-model="brewTemplate.inputWeight"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-input label="Input Weight" v-model="brewTemplate.inputWeight"></ion-input>
+          
+          
+          <ion-input maxlength="3" label="Input Weight" v-model="brewTemplate.inputWeight" ></ion-input>
+          <ion-toggle>Default Toggle</ion-toggle>
+          <p>Target Weight</p>
+          <p> {{+calculateTarget(brewTemplate.inputWeight, brewTemplate.ratio) }} </p>
+
+
         </ion-item>
-        
+
         <ion-item v-for="step in inputSequence">
-          <ion-input label="Weight Target"></ion-input>
+          <ion-input label="Weight Target" v-if="brewTemplate.bloom === false"></ion-input>
           <ion-input label="Timing"></ion-input>
         </ion-item>
 
@@ -28,9 +50,9 @@
           <ion-button @click="inputSequence.push({})">Add Step</ion-button>
         </ion-item>
 
-        <ion-item>
+        <ion-text-area>
           <ion-input v-model="brewTemplate.additionalNotes" label="Additional Notes"></ion-input>
-        </ion-item>
+        </ion-text-area>
 
         <ion-item class="ion-justify-content-center">
           <ion-button slot="end" :disabled="false" @click="console.log(brewTemplate)"> Save </ion-button>
@@ -51,11 +73,12 @@ const router = useRouter();
 
 const brewTemplate = ref({
   title: '',
-  ratio: '',
+  ratio: 1,
   device: '',
   method: '',
-  inputWeight: null,
+  inputWeight: 0,
   additionalNotes: '',
+  bloom: false,
 })
 
 const inputSequence = ref([{}])
@@ -63,6 +86,10 @@ const inputSequence = ref([{}])
 const timingSequence = ref([])
 const detailSequence = ref([])
 
+function calculateTarget(input: number, ratio: number){
+  const target = input * ratio
+  return target
+}
 
 const recordNewBrewEntry = async () => {
   await supabase
