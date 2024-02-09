@@ -7,7 +7,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-range :ticks="true" :snaps="true" :min="1" :max="22" :pin="true" label-placement="start" label="Ratio" v-model="brewTemplate.ratio" :pin-formatter="(value: number)=>`1/${value}`"></ion-range>
+          <ion-range :ticks="true" :snaps="true" :min="1" :max="22" :pin="true" label-placement="start" label="Ratio" v-model="brewTemplate.ratio" :pin-formatter="(value: number)=>`1:${value}`"></ion-range>
         </ion-item>
 
         <ion-item>
@@ -30,19 +30,41 @@
           <ion-input label="Bloom" v-model="brewTemplate.inputWeight"></ion-input>
         </ion-item>
 
-        <ion-item>
-          
-          
-          <ion-input maxlength="3" label="Input Weight" v-model="brewTemplate.inputWeight" ></ion-input>
-          <ion-toggle>Default Toggle</ion-toggle>
-          <p>Target Weight</p>
-          <p> {{+calculateTarget(brewTemplate.inputWeight, brewTemplate.ratio) }} </p>
+        <!-- <ion-item> -->
+          <ion-grid>
+            <ion-row>
+
+              <ion-col>
+                <ion-input maxlength="3" label="Input Weight:" v-model="brewTemplate.inputWeight"></ion-input>
+              </ion-col>
+
+              <ion-col>
+                <div id="targetWeight">
+                  <ion-toggle label-placement="start" value="">Bloom</ion-toggle>
+                </div>
+              </ion-col>
+
+              <ion-col>
+                <div id="targetWeight">
+                  <p>Target Weight:  {{+calculateTarget(brewTemplate.inputWeight, brewTemplate.ratio) }} </p>
+                </div>
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
 
 
+
+
+        <!-- </ion-item> -->
+
+        <ion-item v-if="brewTemplate.bloom === true">
+          <ion-input label="Bloom Ratio"></ion-input>
+          <ion-input label="Duration"></ion-input>
         </ion-item>
 
         <ion-item v-for="step in inputSequence">
-          <ion-input label="Weight Target" v-if="brewTemplate.bloom === false"></ion-input>
+          <ion-input label="Weight Target"></ion-input>
           <ion-input label="Timing"></ion-input>
         </ion-item>
 
@@ -51,7 +73,7 @@
         </ion-item>
 
         <ion-text-area>
-          <ion-input v-model="brewTemplate.additionalNotes" label="Additional Notes"></ion-input>
+          <ion-input v-model="brewTemplate.additionalNotes" label="Additional Notes" class="ion-padding"></ion-input>
         </ion-text-area>
 
         <ion-item class="ion-justify-content-center">
@@ -103,3 +125,11 @@ function createNewBrewStep() {
 
 
 </script>
+
+<style scoped>
+
+#targetWeight > p {
+  text-align: center;
+  justify-content: center;
+}
+</style>

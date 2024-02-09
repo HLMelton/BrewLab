@@ -11,7 +11,7 @@
     </ion-segment>
   </ion-toolbar>
     <div class="ion-padding ion-text-center">
-      <h1>BrewLab</h1>
+      <h1 id="heroText">BrewLab</h1>
     </div>
     <ion-content v-if="registerVisible === false">
       <ion-row class="ion-justify-content-center">
@@ -59,12 +59,12 @@
           <p>to continue to BrewLab</p>
 
               <ion-button :disabled="true" class="ion-margin">
-                <ion-icon :icon="logoDiscord"></ion-icon>
-                Continue with Discord
+                <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
+                Sign up with Discord
               </ion-button>
               <ion-button :disabled="true" class="ion-margin"> 
-                <ion-icon :icon="logoGoogle"></ion-icon> 
-                Continue with Google
+                <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
+                Sign up with Google
               </ion-button>
 
           <form>
@@ -157,6 +157,11 @@ onBeforeMount(async() => {
 </script>
 
 <style scoped>
+
+#heroText{
+  font-family:'Gerhaus';
+}
+
 h1{
   margin-bottom:0;
 }
