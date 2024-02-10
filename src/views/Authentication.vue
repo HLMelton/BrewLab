@@ -21,14 +21,14 @@
           <p>to continue to BrewLab</p>
 
           <div>
-            <ion-button :disabled="true" class="ion-margin" expand="block">
+            <ion-button class="ion-margin" expand="block" @click="signInWithDiscord()">
               <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
               Sign in with Discord
             </ion-button>
-            <ion-button :disabled="true" class="ion-margin" expand="block"> 
+            <!-- <ion-button :disabled="true" class="ion-margin" expand="block"> 
               <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
               Sign in with Google
-            </ion-button>
+            </ion-button> -->
           </div>
           <form>
             <h3 class="text-center">or</h3>
@@ -58,14 +58,14 @@
           <h1>Create your account</h1>
           <p>to continue to BrewLab</p>
 
-              <ion-button :disabled="true" class="ion-margin" expand="block">
+              <ion-button class="ion-margin" expand="block" @click="signInWithDiscord()">
                 <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
                 Sign up with Discord
               </ion-button>
-              <ion-button :disabled="true" class="ion-margin" expand="block"> 
+              <!-- <ion-button :disabled="true" class="ion-margin" expand="block"> 
                 <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
                 Sign up with Google
-              </ion-button>
+              </ion-button> -->
 
           <form>
             <h3 class="text-center">or</h3>
@@ -87,7 +87,7 @@
 
           </form>
           
-          <ion-button shape="round" class="ion-padding ion-justify" :disabled="true" @click="registerNewUser(creds)">Register</ion-button>
+          <ion-button shape="round" class="ion-padding ion-justify" @click="handleRegisterUser(creds)">Register</ion-button>
     
 
         </ion-list>
@@ -108,19 +108,38 @@ import { useBrewStore } from '../store/brewStore';
 const creds = ref({
   email: "",
   password: "",
+  username: "",
 })
 
 const registerVisible = ref(false)
 
-const registerNewUser = async(creds: {email: string, password: string}) => {
+// const registerNewUser = async(creds: {email: string, password: string, username: string}) => {
+//   const { data, error } = await supabase.auth.signUp({
+//     email: creds.email,
+//     password: creds.password,
+//     options: {
+//       data:{
+//         username: creds.username
+//       }
+//     }
+//   })
+//   console.log(data)
+// }
+
+async function handleRegisterUser(creds: {email: string, password: string, username: string}) {
   const { data, error } = await supabase.auth.signUp({
     email: creds.email,
     password: creds.password,
     options: {
-      emailRedirectTo: 'http://brewlab.app'
+      emailRedirectTo:'https://brewlab.app',
+      data:{
+        username: creds.username
+      }
     }
   })
+  console.log(data)
 }
+
 
 async function handleEmailLogin(creds: {email:string, password: string}) {
   const loader = await loadingController.create({})
@@ -140,6 +159,12 @@ async function handleEmailLogin(creds: {email:string, password: string}) {
     await loader.dismiss()
     router.push('/tabs')
   }
+}
+
+async function signInWithDiscord() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'discord',
+  })
 }
 
 async function getUserSession(){
