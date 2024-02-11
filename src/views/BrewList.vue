@@ -22,6 +22,14 @@ import { onMounted } from "vue";
 const brewStore = useBrewStore();
 const router = useRouter();
 
-
+export interface BrewDetail{
+  title: string,
+  ratio: string | number,
+  device: string,
+  method: string,
+  inputWeight: number,
+  additionalNotes: string,
+  bloom: boolean,
+}
 
 </script>
