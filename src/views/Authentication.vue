@@ -1,18 +1,20 @@
 <template>
   <ion-page>
     <ion-toolbar>
-    <ion-segment value="Login">
-      <ion-segment-button value="Login" @click="registerVisible=false">
-        <ion-label>Login</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Register" @click="registerVisible=true">
-        <ion-label>Register</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+      <ion-segment value="Login">
+        <ion-segment-button value="Login" @click="registerVisible=false">
+          <ion-label>Login</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Register" @click="registerVisible=true">
+          <ion-label>Register</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
     <div class="ion-padding ion-text-center">
       <h1 id="heroText">BrewLab</h1>
     </div>
+
     <ion-content v-if="registerVisible === false">
       <ion-row class="ion-justify-content-center">
       <ion-list class="ion-justify-content-center ion-padding"  id="signupContainer">
@@ -30,8 +32,10 @@
               Sign in with Google
             </ion-button> -->
           </div>
+
           <form>
             <h3 class="text-center">or</h3>
+
             <ion-item>
               <ion-label position="stacked">Email</ion-label>
               <ion-input v-model="creds.email" name="email" autocomplete type="email" aria-label="email"></ion-input>
@@ -42,10 +46,16 @@
               <ion-input v-model="creds.password" name="password" autocomplete type="password" aria-label="password"></ion-input>
             </ion-item>
 
+            <ion-item lines="none" class="ion-align-items-center">
+              <ion-grid>
+                <ion-row class="ion-align-items-center">
+                  <ion-col class="ion-text-center">
+                    <ion-button shape="round" class="ion-padding " @click="handleEmailLogin(creds)">Login</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
           </form>
-        <div id="submissionContainer">
-          <ion-button shape="round" class="ion-padding " @click="handleEmailLogin(creds)">Login</ion-button>
-        </div>
 
       </ion-list>
     </ion-row>
@@ -62,6 +72,7 @@
                 <ion-icon :icon="logoDiscord" slot="start"></ion-icon>
                 Sign up with Discord
               </ion-button>
+
               <!-- <ion-button :disabled="true" class="ion-margin" expand="block"> 
                 <ion-icon :icon="logoGoogle" slot="start"></ion-icon> 
                 Sign up with Google
@@ -69,6 +80,7 @@
 
           <form>
             <h3 class="text-center">or</h3>
+
 
             <ion-item>
               <ion-label position="stacked">Display Name</ion-label>
@@ -80,16 +92,27 @@
               <ion-input v-model="creds.email" name="email" autocomplete type="email" aria-label="email"></ion-input>
             </ion-item>
 
-            <ion-item>
+            <ion-item >
               <ion-label position="stacked">Password</ion-label>
               <ion-input v-model="creds.password" name="password" autocomplete type="password" aria-label="password"></ion-input>
             </ion-item>
 
+            <ion-item lines="none" class="ion-align-items-center">
+              <ion-grid>
+                <ion-row class="ion-align-items-center">
+                  <ion-col class="ion-text-center">
+                    <ion-button shape="round" class="ion-padding ion-justify" @click="handleRegisterUser(creds)">Register</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
           </form>
-          
-          <ion-button shape="round" class="ion-padding ion-justify" @click="handleRegisterUser(creds)">Register</ion-button>
-    
 
+          <div class="ion-padding" v-if="confirmationStatus">
+              Check your email to confirm your account. 
+          </div>
+          
+    
         </ion-list>
       </ion-row>
 
@@ -101,7 +124,7 @@
 import { loadingController, toastController } from '@ionic/vue';
 import { supabase } from '../supabase';
 import { onBeforeMount, onMounted, ref } from 'vue';
-import { colorWandOutline, logoDiscord, logoGoogle } from 'ionicons/icons';
+import { colorWandOutline, logoDesignernews, logoDiscord, logoGoogle } from 'ionicons/icons';
 import router from '../router';
 import { useBrewStore } from '../store/brewStore';
 
@@ -112,22 +135,14 @@ const creds = ref({
 })
 
 const registerVisible = ref(false)
-
-// const registerNewUser = async(creds: {email: string, password: string, username: string}) => {
-//   const { data, error } = await supabase.auth.signUp({
-//     email: creds.email,
-//     password: creds.password,
-//     options: {
-//       data:{
-//         username: creds.username
-//       }
-//     }
-//   })
-//   console.log(data)
-// }
+const confirmationStatus = ref(false)
 
 async function handleRegisterUser(creds: {email: string, password: string, username: string}) {
-  const { data, error } = await supabase.auth.signUp({
+  const loader = await loadingController.create({})
+  const toast = await toastController.create({})
+
+  try {
+    const { data, error } = await supabase.auth.signUp({
     email: creds.email,
     password: creds.password,
     options: {
@@ -135,11 +150,15 @@ async function handleRegisterUser(creds: {email: string, password: string, usern
       data:{
         username: creds.username
       }
-    }
-  })
-  console.log(data)
+    }})
+  }catch(error: any){
+    toast.message = error.error_description || error.message
+    await toast.present()
+  }finally{
+    await loader.dismiss()
+    confirmationStatus.value = true
+  }
 }
-
 
 async function handleEmailLogin(creds: {email:string, password: string}) {
   const loader = await loadingController.create({})
@@ -151,8 +170,7 @@ async function handleEmailLogin(creds: {email:string, password: string}) {
       email: creds.email,
       password: creds.password
     })
-  }
-  catch (error: any){
+  }catch(error: any){
     toast.message = error.error_description || error.message
     await toast.present()
   }finally{
