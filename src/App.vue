@@ -2,10 +2,10 @@
   <ion-app>
     <ion-header>
       <ion-toolbar v-if="route.name !== 'Authentication'" id="generalToolbar">
-        <h1 class="ion-text-center"> {{ route.name }} </h1>
-        <ion-buttons slot="start" class="ion-float-left">
+        <ion-buttons slot="start">
           <ion-back-button defaultHref="/tabs" v-if="routsToShowBack && route.name !== 'Profile'"> Back </ion-back-button>
         </ion-buttons>
+        <h1 class="ion-text-center"> {{ route.name }} </h1>
       </ion-toolbar>
       
     </ion-header>

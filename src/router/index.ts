@@ -7,6 +7,7 @@ import BrewView from '../views/BrewView.vue';
 import NewBrew from '../views/NewBrew.vue';
 import Profile from '../views/Profile.vue';
 import Authentication from '../views/Authentication.vue';
+import Verify from '../views/Verify.vue'
 import { supabase } from '../supabase';
 
 const routes: Array<RouteRecordRaw> = [
@@ -15,9 +16,14 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/authentication'
   },
   {
-    path:'/Authentication',
+    path:'/authentication',
     name:'Authentication',
     component: Authentication,
+  },
+  {
+    path:'/verify',
+    name:'Verify',
+    component: Verify,
   },
   {
     path:'/tabs',

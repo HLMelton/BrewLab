@@ -95,10 +95,9 @@
 import { useRouter } from 'vue-router';
 import { supabase } from '../supabase';
 import { BrewDetail } from './BrewList.vue';
-import { mergeProps, onBeforeMount, onMounted, ref } from 'vue';
+import { ref } from 'vue';
 
 const router = useRouter();
-const inputSequence = ref([{}])
 
 const brewTemplate = ref<BrewDetail>({
   title: '',
@@ -123,6 +122,10 @@ function addTemplateStep(){
 
 function removeTemplateStep(){
   brewTemplate.value.brewSteps.pop()
+}
+
+async function commitBrew(brewTemplate: BrewDetail){
+  console.log(brewTemplate)
 }
 
 </script>
