@@ -2,8 +2,8 @@
   <ion-page>
     <ion-content class="ion-padding">
       <ion-card v-for="brew in brewStore.brews">
-      <ion-button expand="block" @click="router.push({ name: 'Brew View', params: {buid: brew.buid} })">
-        <ion-title>{{ brew.title }}</ion-title>
+      <ion-button expand="block" @click="router.push({ name: 'Brew View', query:{detail: Number(brewStore.brews?.indexOf(brew))}})">
+        <ion-title>{{ brew.brew_detail.title }}</ion-title>
       </ion-button>
     </ion-card>
     <CreationTool />
@@ -14,7 +14,7 @@
 <script setup lang="ts">
 
 import { useBrewStore } from "../store/brewStore";
-import { useRouter } from 'vue-router';
+import { RouteParamValueRaw, useRouter } from 'vue-router';
 
 import CreationTool from '../components/CreationTool.vue';
 import { onMounted } from "vue";
@@ -23,13 +23,21 @@ const brewStore = useBrewStore();
 const router = useRouter();
 
 export interface BrewDetail{
-  title: string,
-  ratio: string | number,
-  device: string,
-  method: string,
-  inputWeight: number,
-  additionalNotes: string,
-  bloom: boolean,
+  title: string ,
+  ratio: number ,
+  device: string ,
+  method: string ,
+  inputWeight: number ,
+  brewSteps: {weight: number, timing: string}[],
+  additionalNotes: string | null,
+  bloom: boolean ,
+  brew_detail: RouteParamValueRaw |null,
 }
+
+onMounted(async()=>{
+  await brewStore.fetchBrewsFromDB()
+  console.log(brewStore.brews)
+})
+
 
 </script>

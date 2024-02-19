@@ -31,16 +31,19 @@ const routes: Array<RouteRecordRaw> = [
         path: '/tabs/brews',
         name: 'Brew List',
         component: BrewList,
+        props: true,
       },
       {
-        path:'/tabs/brews/:buid',
+        path:'/tabs/brews/brewView',
         name: 'Brew View',
         component: BrewView,
+        props: true,
       },
       {
         path:'/tabs/brews/new',
         name:'Create Brew',
-        component: NewBrew,
+        component: NewBrew
+
       },
       {
         path: '/tabs/profile',

@@ -35,7 +35,12 @@ import {
   IonSegment,
   IonSegmentButton,
   IonRange,
-  IonAccordion
+  IonAccordion,
+  IonText,
+  IonTextarea,
+  IonToggle,
+  IonSelect,
+  IonSelectOption
   } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
@@ -92,6 +97,9 @@ app.component('ion-input',IonInput)
 app.component('ion-segment',IonSegment)
 app.component('ion-segment-button',IonSegmentButton)
 app.component('ion-range',IonRange)
-app.component('ion-accordion', IonAccordion)
+app.component('ion-toggle', IonToggle)
+app.component('ion-text-area', IonTextarea)
+app.component('ion-select', IonSelect)
+app.component('ion-select-option', IonSelectOption)
 
 app.mount('#app');

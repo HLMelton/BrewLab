@@ -18,7 +18,7 @@
 import { IonFab,IonFabButton,IonIcon, IonFabList } from '@ionic/vue';
 import { addOutline, enterOutline } from 'ionicons/icons';
 import { supabase } from '../supabase';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 

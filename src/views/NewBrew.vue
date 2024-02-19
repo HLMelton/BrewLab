@@ -3,7 +3,7 @@
     <ion-content class="ion-padding">
       <ion-list lines="none">
         <ion-item>
-          <ion-input label="Brew Title" v-model="brewTemplate.title"></ion-input>
+          <ion-input label="Brew Title" v-model="brewTemplate.title"> </ion-input>
         </ion-item>
 
         <ion-item>
@@ -17,7 +17,7 @@
             <ion-select-option value="Hybrid">Hybrid</ion-select-option>
           </ion-select>
           
-          <ion-select label="Device" v-model="brewTemplate.device" class="ion-margin-start">
+          <ion-select label="Device" v-model="brewTemplate.method" class="ion-margin-start">
             <ion-select-option value="V60">V60</ion-select-option>
             <ion-select-option value="Flat Bottom">Flat Bottom</ion-select-option>
             <ion-select-option value="Aeropress">Aeropress</ion-select-option>
@@ -25,28 +25,23 @@
             <ion-select-option value="Cold Brew">Cold Brew</ion-select-option>
           </ion-select>
         </ion-item>
-
-        <ion-item v-if="brewTemplate.bloom === true">
-          <ion-input label="Bloom" v-model="brewTemplate.inputWeight"></ion-input>
-        </ion-item>
-
         <!-- <ion-item> -->
           <ion-grid>
-            <ion-row>
+            <ion-row class="ion-justify-content-center">
 
               <ion-col>
                 <ion-input maxlength="3" label="Input Weight:" v-model="brewTemplate.inputWeight"></ion-input>
               </ion-col>
 
-              <ion-col>
-                <div id="targetWeight">
-                  <ion-toggle label-placement="start" value="">Bloom</ion-toggle>
-                </div>
+              <ion-col class="ion-padding ion-text-center">
+                <!-- <div id="targetWeight"> -->
+                  <ion-toggle  label-placement="start" v-model="brewTemplate.bloom">Bloom</ion-toggle>
+                <!-- </div> -->
               </ion-col>
 
               <ion-col>
                 <div id="targetWeight">
-                  <p>Target Weight:  {{+calculateTarget(brewTemplate.inputWeight, brewTemplate.ratio) }} </p>
+                  <p>Target Weight:  {{calculateTarget(brewTemplate.inputWeight, brewTemplate.ratio) }} </p>
                 </div>
               </ion-col>
 
@@ -63,18 +58,18 @@
           <ion-input label="Duration"></ion-input>
         </ion-item>
 
-        <ion-item v-for="step in inputSequence">
-          <ion-input label="Weight Target"></ion-input>
+        <ion-item v-for="step in brewTemplate.brewSteps">
+          <ion-input label="Weight Target" v-model="step.weight"></ion-input>
           <ion-input label="Timing"></ion-input>
         </ion-item>
 
         <ion-item class="ion-justify-center">
-          <ion-button @click="inputSequence.push({})">Add Step</ion-button>
+          <ion-button @click="addTemplateStep()">Add Step</ion-button>
         </ion-item>
 
-        <ion-text-area>
+        <ion-item>
           <ion-input v-model="brewTemplate.additionalNotes" label="Additional Notes" class="ion-padding"></ion-input>
-        </ion-text-area>
+        </ion-item>
 
         <ion-item class="ion-justify-content-center">
           <ion-button slot="end" :disabled="false" @click="console.log(brewTemplate)"> Save </ion-button>
@@ -89,39 +84,40 @@
 
 import { useRouter } from 'vue-router';
 import { supabase } from '../supabase';
-import { ref } from 'vue';
+import { BrewDetail } from './BrewList.vue';
+import { mergeProps, onBeforeMount, onMounted, ref } from 'vue';
 
 const router = useRouter();
+const inputSequence = ref([{}])
 
-const brewTemplate = ref({
+const brewTemplate = ref<BrewDetail>({
   title: '',
-  ratio: 1,
+  ratio: 0,
   device: '',
   method: '',
   inputWeight: 0,
+  brewSteps: [{weight: 0, timing: '0:00'}],
   additionalNotes: '',
   bloom: false,
+  brew_detail: null
 })
-
-const inputSequence = ref([{}])
 
 function calculateTarget(input: number, ratio: number){
   const target = input * ratio
   return target
 }
 
-const recordNewBrewEntry = async () => {
-  await supabase
-  .from("brews")
-  .insert([{}])
-};
+function addTemplateStep(){
+  brewTemplate.value.brewSteps.push({weight: 0, timing: '0:00'})
+}
 
-function createNewBrewStep() {
-
-};
-
+function removeTemplateStep(){
+  brewTemplate.value.brewSteps.pop()
+}
 
 </script>
+
+
 
 <style scoped>
 
