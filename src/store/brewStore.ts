@@ -10,7 +10,7 @@ import { BrewDetail } from "../views/BrewList.vue";
 export const useBrewStore = defineStore('brews',{
   state: () => {
     return {
-      brews: [] as BrewDetail[] 
+      brews: [] as BrewDetail[] | any 
     }
   },
 
