@@ -64,8 +64,8 @@ const brewStore = useBrewStore();
 const focusBrew = brewStore.brews[route.query.detail].brew_detail
 
 
-onBeforeMount(()=>{
-  console.log(brewStore.brews[route.query.detail])
-})
+// onBeforeMount(()=>{
+//   console.log(brewStore.brews[route.query.detail])
+// })
 
 </script>

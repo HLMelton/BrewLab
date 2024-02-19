@@ -36,7 +36,6 @@ export interface BrewDetail{
 
 onMounted(async()=>{
   await brewStore.fetchBrewsFromDB()
-  console.log(brewStore.brews)
 })
 
 
