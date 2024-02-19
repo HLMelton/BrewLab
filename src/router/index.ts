@@ -24,6 +24,7 @@ const routes: Array<RouteRecordRaw> = [
     path:'/verify',
     name:'Verify',
     component: Verify,
+    props: true
   },
   {
     path:'/tabs',

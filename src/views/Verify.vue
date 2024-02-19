@@ -26,18 +26,22 @@
 
 <script setup lang="ts">
 import { supabase } from '../supabase';
-import { onBeforeMount, ref } from 'vue';
+import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
 const router = useRouter();
 
-const verificationToken = ref(String(route.query.verificationToken))
+const verificationToken = ref(route.query.verificationToken)
 
-async function OTPVerification(token: string){
+async function OTPVerification(token: any){
+  console.log(token)
   const {data,error} = await supabase.auth.verifyOtp({token_hash: token, type: 'email'})
 }
 
+// onMounted(()=>{
+//   OTPVerification(verificationToken)
+// })
 </script>
 
 <style scoped>
