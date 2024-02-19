@@ -18,9 +18,19 @@
           </ion-select>
           
           <ion-select label="Device" v-model="brewTemplate.method" class="ion-margin-start">
-            <ion-select-option value="V60">V60</ion-select-option>
-            <ion-select-option value="Flat Bottom">Flat Bottom</ion-select-option>
+
+            <ion-select-option value="Hario V60">Hario V60</ion-select-option>
+            <ion-select-option value="Origami">Origami</ion-select-option>
+            <ion-select-option value="Hario Switch">Hario Switch</ion-select-option>
+            <ion-select-option value="Chemex">Chemex</ion-select-option>
+
+            <ion-select-option value="Kalita Wave">Kalita Wave</ion-select-option>
+            <ion-select-option value="April Dripper">April Dripper</ion-select-option>
+            <ion-select-option value="Orea Dripper">Orea Dripper</ion-select-option>
+            <ion-select-option value="Hoop Dripper">Hoop Dripper</ion-select-option>
+            <ion-select-option value="French Press">French Press</ion-select-option>
             <ion-select-option value="Aeropress">Aeropress</ion-select-option>
+
             <ion-select-option value="Espresso">Espresso</ion-select-option>
             <ion-select-option value="Cold Brew">Cold Brew</ion-select-option>
           </ion-select>
