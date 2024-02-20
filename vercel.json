@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    {
+      "source": "/verify*",
+      "destination": "/verify"
+    }
+  ]
+}
