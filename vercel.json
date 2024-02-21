@@ -1,3 +1,9 @@
 {
-  "framework": "vite"
+  "framework": "vite",
+  "redirects": [
+    {
+      "source": "/verify",
+      "destination": "/authentication"
+    }
+  ]
 }
