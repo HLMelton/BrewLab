@@ -1,9 +1,6 @@
 {
   "framework": "vite",
-  "redirects": [
-    {
-      "source": "/verify",
-      "destination": "/authentication"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
