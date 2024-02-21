@@ -36,7 +36,14 @@ const verificationToken = ref(route.query.verificationToken)
 
 async function OTPVerification(token: any){
   console.log(token)
-  const {data,error} = await supabase.auth.verifyOtp({token_hash: token, type: 'email'})
+  try{
+    const {data ,error } = await supabase.auth.verifyOtp({token_hash: token, type: 'email'})
+    console.log(data)
+  }catch(error: any){
+    console.log(error)
+  }finally{
+    router.push('/authentication')
+  }
 }
 
 // onMounted(()=>{
