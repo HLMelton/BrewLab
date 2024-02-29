@@ -46,9 +46,6 @@ async function OTPVerification(token: any){
   }
 }
 
-// onMounted(()=>{
-//   OTPVerification(verificationToken)
-// })
 </script>
 
 <style scoped>
