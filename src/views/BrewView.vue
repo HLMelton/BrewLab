@@ -1,32 +1,31 @@
 <template>
   <ion-page>
     <ion-content class="ion-padding">
-        <ion-row class="ion-text-center ion-justify-content-center">
-          <ion-icon></ion-icon>
-
-          <h1></h1>
-        </ion-row>
-
-        <ion-card>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+        <ion-card id="hero-card">
+          <div id="card-persona"></div>
           <ion-card-header>
-            <ion-card-title class="ion-text-center ion-justify-content-center"> {{ focusBrew.title }}</ion-card-title>
-          </ion-card-header>
+            <ion-row class="ion-padding-top ion-margin-top">
+                <ion-col id="card-title">
+                <ion-card-title class=" ion-margin-start"> {{ focusBrew.title }}</ion-card-title>
+                </ion-col>
 
-          <ion-card-content>
-            <ion-row>
-              <ion-col>Device: {{ focusBrew.device }}</ion-col>
-              <ion-col>Method: {{ focusBrew.method }}</ion-col>
-
+                <ion-col id="card-subtitle">
+                <ion-card-subtitle class=" ion-margin-end">BrewID: {{ buid }}</ion-card-subtitle>
+                </ion-col>
             </ion-row>
-          </ion-card-content>
+          </ion-card-header>
         </ion-card>
 
         <ion-card>
           <ion-card-header class="ion-text-center ion-justify-content-center">
-            <ion-card-title>Brew Details</ion-card-title>
+            <ion-card-title>Brewing Details</ion-card-title>
           </ion-card-header>
+
           <ion-card-content>
+            <ion-row>
+                <ion-col >Device: {{ focusBrew.device }}</ion-col>
+                <ion-col>Method: {{ focusBrew.method }}</ion-col>
+            </ion-row>
             <ion-row>
               <ion-col>Brew Ratio: {{ focusBrew.ratio }}:1</ion-col>
               <ion-col>Input Weight:{{ focusBrew.inputWeight }}g</ion-col>
@@ -36,13 +35,19 @@
               <ion-col v-else>Pour Target:{{ focusBrew.brewSteps[step].weight}}</ion-col>
               <ion-col>Pour Timing:{{ focusBrew.brewSteps[step].timing}}</ion-col>
             </ion-row>
-
-            <ion-row>
-              <ion-col>Additional Notes: {{ focusBrew.additionalNotes }}</ion-col>
-            </ion-row>
           </ion-card-content>
         </ion-card>
 
+        <ion-card>
+          <ion-card-header class="ion-text-center ion-justify-content-center">
+            <ion-card-title>Additional Notes</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>{{ focusBrew.additionalNotes }}</ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
 
 
 
@@ -62,6 +67,7 @@ const route = useRoute();
 const brewStore = useBrewStore();
 
 const focusBrew = brewStore.brews[route.query.detail].brew_detail
+const buid = brewStore.brews[route.query.detail].buid
 
 
 // onBeforeMount(()=>{
@@ -69,3 +75,39 @@ const focusBrew = brewStore.brews[route.query.detail].brew_detail
 // })
 
 </script>
+
+<style>
+*{
+--ion-card-background:#586F7C;
+--ion-card-color: white;
+}
+
+#hero-card{
+  border-radius:2rem ;
+  height: 70%;
+}
+
+#card-persona{
+  height: 70%;
+  width: auto;
+  background-color: #fff;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+#brew-card-content{
+background-color: white;
+}
+
+#card-title{
+text-align:left;
+}
+
+#card-subtitle{
+text-align: right;
+}
+
+</style>
