@@ -31,9 +31,9 @@
               <ion-col>Input Weight:{{ focusBrew.inputWeight }}g</ion-col>
             </ion-row>
             <ion-row v-if="focusBrew.brewSteps != null || undefined" v-for="step in focusBrew.brewSteps">
-              <ion-col v-if="focusBrew.bloom === true">Bloom Target:{{ focusBrew.brewSteps[step].weight}}</ion-col>
-              <ion-col v-else>Pour Target:{{ focusBrew.brewSteps[step].weight}}</ion-col>
-              <ion-col>Pour Timing:{{ focusBrew.brewSteps[step].timing}}</ion-col>
+              <!-- <ion-col v-if="focusBrew.bloom === true">Bloom Target:{{ focusBrew.brewSteps[step].weight}}</ion-col> -->
+              <!-- <ion-col>Pour Target:{{ focusBrew.brewSteps[step].weight}}</ion-col>
+              <ion-col>Pour Timing:{{ focusBrew.brewSteps[step].timing}}</ion-col> -->
             </ion-row>
           </ion-card-content>
         </ion-card>
@@ -48,8 +48,6 @@
             </ion-row>
           </ion-card-content>
         </ion-card>
-
-
 
 
     </ion-content>

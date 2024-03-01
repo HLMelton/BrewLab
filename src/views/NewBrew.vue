@@ -93,7 +93,7 @@
             <ion-row>
               <ion-col></ion-col>
               <ion-col id="submissionButton">
-                <ion-button :disabled="false" @click="console.log(brewTemplate)" class="ion-padding-end ion-padding-start">Save</ion-button>
+                <ion-button :disabled="false" @click="commitBrew(brewTemplate)" class="ion-padding-end ion-padding-start">Save</ion-button>
               </ion-col>
               <ion-col></ion-col>
             </ion-row>
@@ -141,18 +141,9 @@ function removeTemplateStep(){
 }
 
 async function commitBrew(brew_detail: BrewDetail){
+  // Exclamation is a questionable fix here but it worked
   const authorid = await supabase.auth.getUser();
-  console.log(authorid)
-  const { data, error } = await supabase.rpc('commit_brew', 
-  {
-    authorid, 
-    brew_detail
-  })
-  if(error){
-    console.log(error)
-  } else{
-    console.log(data)
-  }
+  const { data, error } = await supabase.from('brews').insert([{public_status: true, brew_detail: brewTemplate.value}])
 }
 
 </script>
