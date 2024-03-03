@@ -5,9 +5,15 @@
         <ion-buttons slot="start">
           <ion-back-button defaultHref="/tabs" v-if="routsToShowBack && route.name !== 'Profile'"> Back </ion-back-button>
         </ion-buttons>
-        <h1 class="ion-text-center"> {{ route.name }} </h1>
+
+        <h1 class="ion-text-center" id="router-title"> {{ route.name }} </h1>
+
+        <!-- <ion-buttons slot="end">
+            <ion-icon :icon="createOutline"></ion-icon>
+        </ion-buttons> -->
+        
       </ion-toolbar>
-      
+
     </ion-header>
     <ion-content>
       <ion-router-outlet />
@@ -15,11 +21,12 @@
   </ion-app>
 </template>
 
-<script setup >
+<script setup lang="ts">
 import {IonApp, IonHeader, IonRouterOutlet, IonButton, IonToolbar, useIonRouter, IonContent} from '@ionic/vue';
 import { supabase } from './supabase';
 import { computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { createOutline } from 'ionicons/icons';
 import NewBrew from './views/NewBrew.vue';
 
 const route = useRoute();
@@ -32,7 +39,7 @@ const handleSignOut = async() => {
 }
 
 const routsToShowBack = computed(() => {
-  return route.name !== 'Brew List' 
+  return route.name !== 'Brew List'
 })
 
 </script>
@@ -40,30 +47,34 @@ const routsToShowBack = computed(() => {
 <style>
 
 * {
-  --ion-background-color:#272932;
-  --ion-text-color: #B6C2D9;
+  --ion-background-color:#000000;
+  --ion-text-color: white;
   --ion-border-color: #9E90A2;
-  --ion-tab-bar-background:#272932;
-  --ion-toolbar-background: #272932;
-  --ion-tab-bar-color-selected: #4D7EA8;;
-  --ion-tab-bar-color:#272932;;
+  --ion-tab-bar-background:#000000;
+  --ion-toolbar-background: #000000;
+  --ion-tab-bar-color-selected: #586F7C;
+  --ion-tab-bar-color:#272932;
 }
 
-ion-button {
-  --background: #4D7EA8;
-  --border-color: #B6C2D9;
+ion-button{
+  --background: #586F7C;
+  --color: white;
 }
 
 ion-back-button{
-  --color: #B6C2D9;
+  --color: #00ABE7;
 }
 
 ion-icon {
-  --color: #B6C2D9;
+  --color: #00ABE7;
 }
 
 ion-tab-button{
-  --color: #B6C2D9;
+  --color: white;
+}
+
+ion-select{
+  --ion-text-color: black;
 }
 
 /* Material Design styles */
@@ -82,5 +93,9 @@ ion-segment-button.ios {
 
 #generalToolbar{
   font-family: 'Gerhaus';
+}
+
+#router-title{
+color: #E2E4F6;
 }
 </style>
