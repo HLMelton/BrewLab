@@ -30,13 +30,13 @@
         </ion-item>
 
         <ion-item>
-          <ion-select label="Method" v-model="brewTemplate.method" >
+          <ion-select label="Method" v-model="brewTemplate.method" interface="action-sheet" class="method-select">
             <ion-select-option value="Percolation">Percolation</ion-select-option>
             <ion-select-option value="Immersion">Immersion</ion-select-option>
             <ion-select-option value="Hybrid/All">Hybrid/All</ion-select-option>
           </ion-select>
 
-          <ion-select label="Device" v-model="brewTemplate.device"  v-if="brewTemplate.method === 'Percolation'" class="ion-margin-start">
+          <ion-select label="Device" v-model="brewTemplate.device"  v-if="brewTemplate.method === 'Percolation'" class="ion-margin-start" interface="action-sheet">
             <ion-select-option value="Hario V60">Hario V60</ion-select-option>
             <ion-select-option value="Espresso">Espresso</ion-select-option>
             <ion-select-option value="Origami">Origami</ion-select-option>
@@ -48,12 +48,12 @@
             <ion-select-option value="Pure Over">Pure Over</ion-select-option>
           </ion-select>
 
-          <ion-select label="Device" v-model="brewTemplate.device"  v-if="brewTemplate.method === 'Immersion'" class="ion-margin-start">
+          <ion-select label="Device" v-model="brewTemplate.device"  v-if="brewTemplate.method === 'Immersion'" class="ion-margin-start" interface="action-sheet">
             <ion-select-option value="Cold Brew">Cold Brew</ion-select-option>
             <ion-select-option value="French Press">French Press</ion-select-option>
           </ion-select>
 
-          <ion-select label="Device" v-model="brewTemplate.device"  v-if="brewTemplate.method === 'Hybrid/All'" class="ion-margin-start">
+          <ion-select label="Device" v-model="brewTemplate.device"  v-if="brewTemplate.method === 'Hybrid/All'" class="ion-margin-start" interface="action-sheet">
             <!-- Percolation -->
             <ion-select-option value="Hario V60">Hario V60</ion-select-option>
             <ion-select-option value="Origami">Origami</ion-select-option>
