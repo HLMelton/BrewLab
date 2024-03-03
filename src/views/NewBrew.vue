@@ -22,7 +22,7 @@
         <h1>Brew Prep</h1>
         </div>
         <ion-item>
-          <ion-input label="Title" v-model="brewTemplate.title"> </ion-input>
+          <ion-input label="Title" v-model="brewTemplate.title" placeholder="Enter your Brew Title"> </ion-input>
         </ion-item>
         <ion-item>
           <ion-text class="ion-justify-content-center">Ratio 1:{{ brewTemplate.ratio }} </ion-text>
@@ -78,7 +78,7 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-input maxlength="3" label="Input Weight:" v-model="brewTemplate.inputWeight"></ion-input>
+                <ion-input maxlength="3" label="Input Weight:" v-model="brewTemplate.inputWeight" placeholder="0"></ion-input>
               </ion-col>
 
               <ion-col>
@@ -89,19 +89,19 @@
         </ion-item>
 
         <ion-item>
-            <ion-text>Final Target Weight:  {{calculateTarget(brewTemplate.inputWeight, brewTemplate.ratio) }} </ion-text>
+            <ion-text>Final Target Weight:  {{ calculateTarget(brewTemplate.inputWeight, brewTemplate.ratio) }} </ion-text>
         </ion-item>
         <div id="headerText">
             <h1>Brew Steps</h1>
         </div>
         <ion-item v-if="brewTemplate.bloom === true">
-          <ion-input label="Bloom Ratio"></ion-input>
-          <ion-input label="Duration"></ion-input>
+          <ion-input label="Bloom Ratio:" placeholder="1:1"></ion-input>
+          <ion-input label="Duration:" placeholder="0:00"></ion-input>
         </ion-item>
 
         <ion-item v-for="step in brewTemplate.brewSteps">
-          <ion-input label="Weight Target" v-model="step.weight"></ion-input>
-          <ion-input label="Timing"></ion-input>
+          <ion-input label="Weight Target" v-model="step.weight" placeholder="0"></ion-input>
+          <ion-input label="Timing" placeholder="0:00"></ion-input>
 
         </ion-item>
 
@@ -119,7 +119,7 @@
           </ion-grid>
         </div>
         <ion-item>
-          <ion-input v-model="brewTemplate.additionalNotes" label="Additional Notes" class="ion-padding"></ion-input>
+          <ion-input v-model="brewTemplate.additionalNotes" label="Additional Notes:" class="ion-padding" ></ion-input>
         </ion-item>
 
         <ion-item>
@@ -156,11 +156,11 @@ const router = useRouter();
 
 const brewTemplate = ref<BrewDetail>({
   title: '',
-  ratio: 0,
+  ratio: 1,
   device: '',
   method: 'Hybrid/All',
-  inputWeight: 0,
-  brewSteps: [{weight: 0, timing: '0:00'}],
+  inputWeight: undefined,
+  brewSteps: [{weight: undefined, timing: undefined}],
   additionalNotes: '',
   bloom: false,
   brew_detail: null
@@ -168,14 +168,14 @@ const brewTemplate = ref<BrewDetail>({
 
 const pageView = ref('Brewing')
 
-
-function calculateTarget(input: number, ratio: number){
+// Sloppy but works for now
+function calculateTarget(input: any, ratio: number){
   const target = input * ratio
   return target
 }
 
 function addTemplateStep(){
-  brewTemplate.value.brewSteps.push({weight: 0, timing: '0:00'})
+  brewTemplate.value.brewSteps.push({weight: undefined, timing: undefined})
 }
 
 function removeTemplateStep(){
