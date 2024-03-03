@@ -5,7 +5,13 @@
         <ion-buttons slot="start">
           <ion-back-button defaultHref="/tabs" v-if="routsToShowBack && route.name !== 'Profile'"> Back </ion-back-button>
         </ion-buttons>
+
         <h1 class="ion-text-center" id="router-title"> {{ route.name }} </h1>
+
+        <!-- <ion-buttons slot="end">
+            <ion-icon :icon="createOutline"></ion-icon>
+        </ion-buttons> -->
+        
       </ion-toolbar>
 
     </ion-header>
@@ -20,6 +26,7 @@ import {IonApp, IonHeader, IonRouterOutlet, IonButton, IonToolbar, useIonRouter,
 import { supabase } from './supabase';
 import { computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { createOutline } from 'ionicons/icons';
 import NewBrew from './views/NewBrew.vue';
 
 const route = useRoute();
