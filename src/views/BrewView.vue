@@ -61,7 +61,7 @@
             </ion-row>
             <ion-row>
               <ion-col>Brewing Ratio: {{ focusBrew.ratio }}:1</ion-col>
-              <ion-col>Coffee Amount(g):{{ focusBrew.inputWeight }}g</ion-col>
+              <ion-col>Coffee Amount:{{ focusBrew.inputWeight }}g</ion-col>
             </ion-row>
           </ion-card-content>
         </ion-card>
