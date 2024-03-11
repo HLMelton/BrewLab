@@ -3,8 +3,7 @@ import { defineStore } from "pinia";
 import { supabase } from '../supabase';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { BrewDetail } from "../views/BrewList.vue";
-// import.meta.env;
-
+import { useProfileStore } from "./profileStore";
 
 
 export const useBrewStore = defineStore('brews',{
@@ -16,14 +15,12 @@ export const useBrewStore = defineStore('brews',{
 
   actions: {
     async fetchBrewsFromDB(){
+
+      const profile = useProfileStore();
       const { data, error} = await supabase.from('brews').select(`*`)
-      console.log(data)
+      // attempting to
+      // profile.user.brews = data?.length;
       this.brews = data
     },
-    async fetchBrewDetail(buid: number){
-      const {data, error} = await supabase.from('brews').select(`buid = 3`)
-      console.log(data)
-
-    }
   }
 });
