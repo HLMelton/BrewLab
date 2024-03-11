@@ -1,23 +1,28 @@
 <template>
   <ion-page>
     <ion-content>
-      <!-- <ion-card class="ion-padding ion-margin" id="profile-card">
+      <ion-card class="ion-padding ion-margin" id="profile-card">
         <div id="profile-persona">
           <div id="profile-persona-cutout">
           </div>
         </div>
         <ion-row class="ion-padding-top">
             <ion-col>
-                <ion-card-title>U:{{userInfo.id}}</ion-card-title>
+                <ion-card-title>{{ profileStore.user.profile_name }}</ion-card-title>
             </ion-col>
             <ion-col>
-                <ion-card-subtitle>R:MM/DD/YYYY</ion-card-subtitle>
+                <ion-card-title>Total Brews: {{ profileStore.user.brews }}</ion-card-title>
             </ion-col>
         </ion-row>
-        <ion-card-content>
-           {{ userInfo.confirmed_at }}
-        </ion-card-content>
-      </ion-card> -->
+        <ion-row>
+            <ion-col>
+                <ion-card-subtitle>{{ profileStore.user.formattedDate }}</ion-card-subtitle>
+            </ion-col>
+            <ion-col>
+                <ion-card-title>Brew Score: {{ profileStore.user.brewScore }}</ion-card-title>
+            </ion-col>
+        </ion-row>
+      </ion-card>
       <ion-button @click="handleSignOut()" class="ion-padding" expand="block"> Sign Out </ion-button>
     </ion-content>
   </ion-page>
@@ -28,20 +33,14 @@ import { onBeforeMount, onMounted, ref } from 'vue';
 import { loadingController, toastController } from '@ionic/vue';
 import { supabase } from '../supabase';
 import { useRoute, useRouter } from 'vue-router';
+import { useGearStore } from '../store/gearStore';
+import { useProfileStore } from '../store/profileStore';
 
 const route = useRoute();
 const router = useRouter();
 
-const userInfo = ref({
-  id:'',
-  confirmed_at:''
-})
-
-async function getUserInfo() {
-  const userInfo = await supabase.auth.getUser()
-  console.log(userInfo)
-}
-
+const profileStore = useProfileStore();
+const gearStore = useGearStore();
 
 async function handleSignOut(){
   const loader = await loadingController.create({})
@@ -58,14 +57,8 @@ async function handleSignOut(){
   }
 }
 
-async function getUser(){
-  const currentUser = await supabase.auth.getUser()
-  console.log(currentUser.data.user)
-  return currentUser.data.user
-}
-
 onBeforeMount(async() => {
-  const userInfo = getUserInfo()
+  profileStore.getProfile()
 })
 
 
@@ -76,7 +69,7 @@ onBeforeMount(async() => {
 
 #profile-card{
     background-color: #586F7C;
-    height: 80%;
+    height: 65%;
     border-radius: 2rem;
 }
 
