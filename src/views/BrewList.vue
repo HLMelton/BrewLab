@@ -18,7 +18,7 @@ import { useBrewStore } from "../store/brewStore";
 import { RouteParamValueRaw, useRouter } from 'vue-router';
 
 import CreationTool from '../components/CreationTool.vue';
-import { onMounted } from "vue";
+import { onBeforeUpdate, onMounted } from "vue";
 
 const brewStore = useBrewStore();
 const router = useRouter();
@@ -35,7 +35,7 @@ export interface BrewDetail {
     brew_detail: RouteParamValueRaw | null,
 }
 
-onMounted(async () => {
+onBeforeUpdate(async () => {
     await brewStore.fetchBrewsFromDB()
 })
 
